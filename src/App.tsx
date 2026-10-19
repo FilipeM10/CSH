@@ -1,11 +1,11 @@
-import TodoList from './components/TodoList'
+import HomePage from './components/HomePage'
 
 const App = () => {
-  return (<>
-
-    <TodoList />
-
-  </>)
+  return (
+    <>
+      <HomePage />
+    </>
+  )
 }
 
 export default App
