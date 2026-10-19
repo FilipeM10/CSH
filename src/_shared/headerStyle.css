@@ -1,0 +1,30 @@
+.header {
+    background-color: #030c17;
+    color: #fff;
+    width: 100%;
+    display: flex;
+    position: fixed;
+    z-index: 2;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #21354699;
+}
+
+.logo-container {
+    display: flex;
+    align-items: center;
+}
+
+.logo {
+    width: 150px;
+    height: 95px;
+}
+
+
+
+nav a {
+    color: #fff;
+    text-decoration: none;
+    margin: 0 15px;
+}
+
