@@ -17,7 +17,15 @@ body {
     padding: 0;
 }
 
-.container-body {
+.mainScope {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 120px;
+}
+.section { padding: 120px; }
+
+.container-second-body {
     background-color: var(--background-secondary-color);
 }
 

@@ -9,8 +9,9 @@ const Header = () => {
             </div>
             <nav className="nav-links">
                 <ul>
-                    <a href="/">Home</a>
-                    <a href="/about">About</a>
+                    <a href="#home">Inicio</a>
+                    <a href="#about">Sobre</a>
+                    <a href="#services">Serviços</a>
                 </ul>
             </nav>
         </header>

@@ -7,10 +7,11 @@
 }
 
 .container {
-    padding: 13rem 13rem 10rem 18rem;
+    padding: 11rem 10rem 10rem 12rem;
     display: flex;
-    flex-direction: column;
-    gap: 10px;
+    align-items: center;
+    justify-content: space-between;
+    gap: 5rem;
 
     position: relative;
     isolation: isolate;
@@ -39,21 +40,36 @@
         var(--grid-size) var(--grid-size);
 }
 
-/* brilho nas linhas da grade que segue o mouse */
+/* brilho nas linhas da grade que segue o mouse: um círculo pequeno com máscara fixa,
+   movido só por transform (o JS também desloca as linhas internas para ficarem alinhadas com a grade) */
 .grid-glow {
     position: absolute;
-    inset: 0;
+    top: 0;
+    left: 0;
+    width: 360px;
+    height: 360px;
     z-index: -1;
     pointer-events: none;
+    overflow: hidden;
+    mask-image: radial-gradient(closest-side, #000 0%, transparent 100%);
+    -webkit-mask-image: radial-gradient(closest-side, #000 0%, transparent 100%);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    will-change: transform;
+}
+
+.grid-glow-lines {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: calc(100% + var(--grid-size));
+    height: calc(100% + var(--grid-size));
     background-image:
         linear-gradient(rgba(6, 159, 249, 0.9) 1px, transparent 1px),
         linear-gradient(90deg, rgba(0, 232, 152, 0.8) 1px, transparent 1px);
     background-size: var(--grid-size) var(--grid-size);
-    mask-image: radial-gradient(180px circle at var(--mx, 50%) var(--my, 50%), #000 0%, transparent 100%);
-    -webkit-mask-image: radial-gradient(180px circle at var(--mx, 50%) var(--my, 50%), #000 0%, transparent 100%);
-    opacity: var(--glow-opacity, 0);
     filter: drop-shadow(0 0 3px rgba(6, 159, 249, 0.8));
-    transition: opacity 0.3s ease;
+    will-change: transform;
 }
 
 /* aurora azul/verde em movimento no topo */
@@ -72,6 +88,27 @@
         radial-gradient(ellipse 45% 40% at 65% 55%, rgba(0, 232, 152, 0.08) 0%, transparent 70%);
     filter: blur(60px);
     animation: aurora-drift 18s ease-in-out infinite alternate;
+}
+
+.hero-content {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+/* em telas menores a animação desce para baixo do texto */
+@media (max-width: 1200px) {
+    .container {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 9rem 3rem 8rem;
+        gap: 6rem;
+    }
+
+    .hero-visual {
+        width: 100%;
+        max-width: 480px;
+    }
 }
 
 .title {

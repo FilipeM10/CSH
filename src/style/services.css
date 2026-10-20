@@ -1,0 +1,91 @@
+.services-container {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 10px;
+}
+
+.services-content {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 30px;
+}
+
+.service-item {
+    position: relative;
+    min-height: 340px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    border: 1px solid #21354699;
+    border-radius: 20px;
+    overflow: hidden;
+    isolation: isolate;
+    background-color: #030C17;
+    box-sizing: border-box;
+    
+    transition: all 0.2s ease;
+}
+
+.service-item:hover {
+    transform: translateY(2px);
+    box-shadow: 1px 1px 20px 1px var(--string-body);
+}
+
+/* imagem ocupando o card inteiro, atrás do texto */
+.service-bg {
+    position: absolute;
+    inset: 0;
+    z-index: -2;
+    background-size: cover;
+    background-position: center;
+    transition: transform 0.6s ease;
+}
+
+/* enquanto não tem imagem: um degradê com as cores do tema */
+.service-bg-empty {
+    background-image:
+        radial-gradient(circle at 25% 20%, rgba(6, 159, 249, 0.22), transparent 55%),
+        radial-gradient(circle at 80% 75%, rgba(0, 232, 152, 0.14), transparent 50%);
+}
+
+/* escurece a parte de baixo para o texto ficar legível em cima de qualquer imagem */
+.service-item::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    background: linear-gradient(to top, rgba(3, 12, 23, 0.95) 15%, rgba(3, 12, 23, 0.55) 55%, rgba(3, 12, 23, 0.1) 100%);
+}
+
+.service-item:hover .service-bg {
+    transform: scale(1.06);
+}
+
+.service-info {
+    padding: 20px;
+}
+
+.service-title {
+    margin: 0 0 8px;
+    font-size: 17px;
+}
+
+.service-description {
+    margin: 0;
+    font-size: 12px;
+    line-height: 1.5;
+    color: #8da2af;
+}
+
+@media (max-width: 1100px) {
+    .services-content {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 600px) {
+    .services-content {
+        grid-template-columns: 1fr;
+        gap: 16px;
+    }
+}

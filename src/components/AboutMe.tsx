@@ -1,10 +1,14 @@
 import '../style/aboutMe.css'
 
-const AboutMe = () => {
+interface AboutMeProps {
+    id: string;
+}
+
+const AboutMe = ({ id }: AboutMeProps) => {
 
     return (
-        <div className="aboutMe-container">
-            <div className='info-aboutMe'>
+        <div id={id} className="aboutMe-container">
+            <div className='info-aboutMe section'>
                 <span className='comment-dev'>// Sobre mim</span>
                 <span className='subtitle'>Ofertas claras e seguras, meu código suas regras</span>
                 <span className='description-aboutMe'>

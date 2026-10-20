@@ -1,12 +1,18 @@
+:root {
+    --string: #00e898;
+    --string-body: #00e897ab;
+    --function: #069ff9;
+}
+
 .aboutMe-container {
     width: 100%;
     max-width: 1200px;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 120px;
     gap: 40px;
 }
+
 
 .info-aboutMe {
     width: 100%;
@@ -20,9 +26,16 @@
     width: 100%;
     flex: 1;
     min-width: 0;
-    border-radius: 8px;
+    border-radius: 20px;
     overflow: hidden;
     background-color: #1e1e1e;
+
+    transition: all 0.3s ease;
+}
+
+.code-aboutMe:hover {
+    transform: translateY(-2px);
+    box-shadow: 1px 1px 20px 1px var(--string-body);
 }
 
 .description-aboutMe {
@@ -72,8 +85,8 @@
     color: #fff;
 }
 .string {
-    color: #00e898
+    color: var(--string);
 }
 .function {
-    color: #069ff9
+    color: var(--function);
 }
