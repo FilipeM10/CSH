@@ -279,6 +279,16 @@
     }
 }
 
+/* cópia local do piscar do index.css: dentro do módulo o nome da animação ganha hash e não enxerga o global */
+@keyframes piscar {
+    0%, 100% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0;
+    }
+}
+
 @keyframes term-in {
     from {
         opacity: 0;
@@ -305,6 +315,14 @@
     }
     50% {
         transform: translateZ(calc(90px + var(--depth) * 1.6)) translateY(-10px);
+    }
+}
+
+/* em telas menores a animação desce para baixo do texto da HomePage */
+@media (max-width: 1200px) {
+    .hero-visual {
+        width: 100%;
+        max-width: 480px;
     }
 }
 

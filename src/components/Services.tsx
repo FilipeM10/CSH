@@ -1,4 +1,4 @@
-import '../style/services.css'
+import style from '../style/services.module.css'
 
 interface ServicesProps {
     id: string;
@@ -7,7 +7,7 @@ interface ServicesProps {
 const Services = ({ id }: ServicesProps) => {
     const services = [
         {
-            nome: 'Landing Pages e Sites Institucionais', 
+            nome: 'Landing Pages e Sites Institucionais',
             descricao: 'Criação de páginas de alta conversão, portfólios e sites institucionais otimizados para converter visitantes em clientes.',
             img: 'src/assets/Workspace.png'
         }, {
@@ -43,21 +43,21 @@ const Services = ({ id }: ServicesProps) => {
 
     return (
         <div id={id} className="services container-second-body section">
-            <div className="services-container">
+            <div className={style["services-container"]}>
                 <span className="comment-dev">// serviços</span>
                 <span className="subtitle">Meus Serviços</span>
             </div>
-            <div className="services-content">
+            <div className={style["services-content"]}>
                 {
                     services.map((service, index) => (
-                        <div key={index} className="service-item">
+                        <div key={index} className={style["service-item"]}>
                             <div
-                                className={`service-bg${service.img ? '' : ' service-bg-empty'}`}
+                                className={`${style["service-bg"]}${service.img ? '' : ` ${style["service-bg-empty"]}`}`}
                                 style={service.img ? { backgroundImage: `url(${service.img})` } : undefined}
                             />
-                            <div className="service-info">
-                                <h3 className="service-title">{service.nome}</h3>
-                                <p className="service-description">{service.descricao}</p>
+                            <div className={style["service-info"]}>
+                                <h3 className={style["service-title"]}>{service.nome}</h3>
+                                <p className={style["service-description"]}>{service.descricao}</p>
                             </div>
                         </div>
                     ))

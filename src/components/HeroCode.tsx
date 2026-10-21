@@ -1,5 +1,5 @@
-import { useEffect, useRef, useState, type MouseEvent } from 'react'
-import '../style/heroCode.css'
+import { useEffect, useRef, useState, type MouseEvent, type ReactNode } from 'react'
+import style from '../style/heroCode.module.css'
 
 type TokenKind = 'kw' | 'var' | 'fn' | 'str' | 'prop' | 'bool' | 'punc' | 'pl'
 
@@ -30,12 +30,16 @@ const lineLength = (line: Token[]) => line.reduce((sum, tok) => sum + tok.v.leng
 // cada quebra de linha conta como 1 caractere para dar uma pausa natural entre as linhas
 const TOTAL_CHARS = CODE.reduce((sum, line) => sum + lineLength(line) + 1, 0)
 
+// posição (em caracteres digitados) onde cada linha começa
+const LINE_STARTS = CODE.map((_, i) => CODE.slice(0, i).reduce((sum, line) => sum + lineLength(line) + 1, 0))
+
 const prefersReducedMotion = () =>
     typeof window !== 'undefined' && window.matchMedia('(prefers-reduced-motion: reduce)').matches
 
 const HeroCode = () => {
-    const [chars, setChars] = useState(0)
-    const [termLines, setTermLines] = useState(0)
+    // com movimento reduzido já começa tudo escrito, sem precisar de setState no effect
+    const [chars, setChars] = useState(() => (prefersReducedMotion() ? TOTAL_CHARS : 0))
+    const [termLines, setTermLines] = useState(() => (prefersReducedMotion() ? TERMINAL.length : 0))
     const tiltRef = useRef<HTMLDivElement>(null)
 
     // inclina a janela na direção do mouse; atualiza variáveis CSS direto no elemento para não re-renderizar
@@ -60,11 +64,7 @@ const HeroCode = () => {
 
     // máquina de etapas: digita o código, depois imprime o terminal, espera e reinicia
     useEffect(() => {
-        if (prefersReducedMotion()) {
-            setChars(TOTAL_CHARS)
-            setTermLines(TERMINAL.length)
-            return
-        }
+        if (prefersReducedMotion()) return
 
         let timer: number
         if (chars < TOTAL_CHARS) {
@@ -80,21 +80,19 @@ const HeroCode = () => {
         return () => clearTimeout(timer)
     }, [chars, termLines])
 
-    let remaining = chars
-    let cursorLine = -1
+    // o cursor fica na primeira linha que ainda não terminou de ser digitada
+    const cursorLine = LINE_STARTS.findIndex((start, i) => chars - start <= lineLength(CODE[i]))
 
     const renderedLines = CODE.map((line, i) => {
-        const len = lineLength(line)
-        const shown = Math.max(0, Math.min(remaining, len))
-        if (cursorLine === -1 && remaining <= len) cursorLine = i
-        remaining -= len + 1
+        let left = Math.max(0, Math.min(chars - LINE_STARTS[i], lineLength(line)))
 
-        let left = shown
-        const parts = line.map((tok, j) => {
+        const parts: ReactNode[] = []
+        for (let j = 0; j < line.length; j++) {
+            const tok = line[j]
             const part = tok.v.slice(0, Math.max(0, left))
             left -= tok.v.length
-            return part ? <span key={j} className={`tk-${tok.k}`}>{part}</span> : null
-        })
+            if (part) parts.push(<span key={j} className={style[`tk-${tok.k}`]}>{part}</span>)
+        }
 
         return { parts, active: i === cursorLine }
     })
@@ -103,40 +101,40 @@ const HeroCode = () => {
 
     return (
         <div
-            className="hero-visual"
+            className={style['hero-visual']}
             aria-hidden="true"
             onMouseMove={handleMouseMove}
             onMouseLeave={handleMouseLeave}
         >
-            <div className="hero-tilt" ref={tiltRef}>
-                <div className="hero-stage">
-                    <div className="code-window">
-                        <div className="code-titlebar">
-                            <span className="dot dot-red" />
-                            <span className="dot dot-yellow" />
-                            <span className="dot dot-green" />
-                            <span className="code-filename">futuro.ts</span>
+            <div className={style['hero-tilt']} ref={tiltRef}>
+                <div className={style['hero-stage']}>
+                    <div className={style['code-window']}>
+                        <div className={style['code-titlebar']}>
+                            <span className={`${style['dot']} ${style['dot-red']}`} />
+                            <span className={`${style['dot']} ${style['dot-yellow']}`} />
+                            <span className={`${style['dot']} ${style['dot-green']}`} />
+                            <span className={style['code-filename']}>futuro.ts</span>
                         </div>
-                        <div className="code-body">
+                        <div className={style['code-body']}>
                             {renderedLines.map((line, i) => (
-                                <div key={i} className={`code-line${line.active ? ' active' : ''}`}>
-                                    <span className="ln">{i + 1}</span>
-                                    <span className="code-text">
+                                <div key={i} className={`${style['code-line']}${line.active ? ` ${style['active']}` : ''}`}>
+                                    <span className={style['ln']}>{i + 1}</span>
+                                    <span className={style['code-text']}>
                                         {line.parts}
-                                        {line.active && !typingDone && <span className="caret" />}
+                                        {line.active && !typingDone && <span className={style['caret']} />}
                                     </span>
                                 </div>
                             ))}
                         </div>
                     </div>
 
-                    <div className={`terminal${termLines > 0 ? ' visible' : ''}`}>
-                        <div className="terminal-titlebar">bash</div>
-                        <div className="terminal-body">
+                    <div className={`${style['terminal']}${termLines > 0 ? ` ${style['visible']}` : ''}`}>
+                        <div className={style['terminal-titlebar']}>bash</div>
+                        <div className={style['terminal-body']}>
                             {TERMINAL.slice(0, termLines).map((line, i) => (
-                                <div key={i} className={`term-line term-${line.k}`}>
-                                    {line.k === 'cmd' && <span className="term-prompt">$ </span>}
-                                    {line.k === 'live' && <span className="live-dot" />}
+                                <div key={i} className={`${style['term-line']} ${style[`term-${line.k}`]}`}>
+                                    {line.k === 'cmd' && <span className={style['term-prompt']}>$ </span>}
+                                    {line.k === 'live' && <span className={style['live-dot']} />}
                                     {line.text}
                                     {line.k === 'live' && <span className="cursor-blink">_</span>}
                                 </div>
@@ -144,10 +142,10 @@ const HeroCode = () => {
                         </div>
                     </div>
 
-                    <div className="chip chip-status">
-                        <span className="live-dot" /> 200 OK
+                    <div className={`${style['chip']} ${style['chip-status']}`}>
+                        <span className={style['live-dot']} /> 200 OK
                     </div>
-                    <div className="chip chip-latency">⚡ 12ms</div>
+                    <div className={`${style['chip']} ${style['chip-latency']}`}>⚡ 12ms</div>
                 </div>
             </div>
         </div>

@@ -1,7 +1,8 @@
+import Header from './_shared/HeaderComponent/Header'
 import HomePage from './components/HomePage'
 import AboutMe from './components/AboutMe'
-import Header from './_shared/Header'
 import Services from './components/Services'
+import Footer from './_shared/footerComponent/Footer'
 
 const App = () => {
   return (
@@ -14,6 +15,7 @@ const App = () => {
           <Services id="services" />
         </div>
       </main>
+      <Footer />
     </>
   )
 }

@@ -1,6 +1,6 @@
 import { useEffect, useRef, type MouseEvent } from 'react'
-import '../style/homePage.css'
-import HeroCode from './HeroCode'
+import style from '../style/homePage.module.css'
+import HeroCode from './HeroCode.tsx'
 
 interface HomePageProps {
     id: string;
@@ -57,24 +57,25 @@ const HomePage = ({ id }: HomePageProps) => {
     return (
         <div
             id={id}
-            className="container"
+            className={style['container']}
             ref={containerRef}
             onMouseMove={handleMouseMove}
             onMouseLeave={handleMouseLeave}
         >
-            <div className="grid-glow" ref={glowRef} aria-hidden="true">
-                <div className="grid-glow-lines" ref={linesRef} />
+            <div className={style['grid-glow']} ref={glowRef} aria-hidden="true">
+                <div className={style['grid-glow-lines']} ref={linesRef} />
             </div>
-            <div className='hero-content'>
-                <span className='comment-dev'>
-                    &gt; bem vindo ao seu ambiente ideal de desenvolvimento<span className='cursor-blink'>_</span>
+            <div className={style['hero-content']}>
+                {/* comment-dev, cursor-blink e gradient-element são globais (index.css), por isso vão como string */}
+                <span className="comment-dev">
+                    &gt; bem vindo ao seu ambiente ideal de desenvolvimento<span className="cursor-blink">_</span>
                 </span>
-                <span className='title'>Desenvolvendo o <span className='gradient-element'>futuro</span> <br />Fazendo seu negócio rodar</span>
-                <p className='csh-description'>Cyber System Host — desenvolvimento de software, APIs e <br /> infraestrutura sob medida.</p>
+                <span className={style['title']}>Desenvolvendo o <span className="gradient-element">futuro</span> <br />Fazendo seu negócio rodar</span>
+                <p className={style['csh-description']}>Cyber System Host — desenvolvimento de software, APIs e <br /> infraestrutura sob medida.</p>
 
-                <div className='homeBtn'>
-                    <button className='btn see-project'>Ver projetos</button>
-                    <button className='btn talk-toMe'>Fale comigo</button>
+                <div className={style['homeBtn']}>
+                    <button className={`${style['btn']} ${style['see-project']}`}>Ver projetos</button>
+                    <button className={`${style['btn']} ${style['talk-toMe']}`}>Fale comigo</button>
                 </div>
             </div>
 

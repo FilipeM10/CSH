@@ -1,13 +1,13 @@
-import './headerStyle.css'
+import style from './headerStyle.module.css'
 
 const Header = () => {
 
     return (
-        <header className="header">
-            <div className="logo-container">
-                <img src="../../public/Logo-CSH.png" alt="CSH Logo" className="logo" />
+        <header className={style["header"]}>
+            <div className={style["logo-container"]}>
+                <img src="../../public/Logo-CSH.png" alt="CSH Logo" className={style["logo"]} />
             </div>
-            <nav className="nav-links">
+            <nav className={style["nav-links"]}>
                 <ul>
                     <a href="#home">Inicio</a>
                     <a href="#about">Sobre</a>

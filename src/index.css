@@ -5,6 +5,9 @@
     --background-primary-color: #030C17;
     --background-secondary-color: #061523;
     --font-primary-color: #fff;
+    --primary-color: #069ff9;
+    --secondary-color: #00e898;
+    --shadow-color: #00e89788;
 }
 
 body {
@@ -38,4 +41,27 @@ body {
     font-size: 32px;
     font-weight: 700;
     margin-bottom: 20px;
+}
+
+.gradient-element {
+    background-image: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: transparent;
+}
+
+/* usado na HomePage e no terminal do HeroCode */
+.cursor-blink {
+    display: inline-block;
+    animation: piscar 1s infinite;
+}
+
+@keyframes piscar {
+    0%, 100% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0;
+    }
 }
