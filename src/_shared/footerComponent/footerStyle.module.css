@@ -1,4 +1,222 @@
+.footer-component {
+    position: relative;
+    padding: 80px 120px 0;
+}
+
+/* linha em gradiente no topo do footer */
+.footer-component::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--primary-color), var(--secondary-color), transparent);
+    opacity: 0.6;
+}
+
+.footer-grid {
+    display: grid;
+    grid-template-columns: 1.2fr 2fr 0.8fr 1.2fr;
+    gap: 30px;
+    max-width: 1300px;
+    margin: 0 auto;
+    padding-bottom: 60px;
+}
+
+/* ---------- marca ---------- */
+
+.brand {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.logo-estruture {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+}
+
 .logo {
-    width: 200px;
-    height: 200px;
+    width: 140px;
+    height: auto;
+}
+
+.csh-footer-name {
+    font-size: 22px;
+    font-weight: 700;
+}
+
+.brand-description {
+    margin: 0;
+    max-width: 300px;
+    font-size: 14px;
+    line-height: 1.6;
+    color: #ffffff99;
+}
+
+.item-icon {
+    display: flex;
+    gap: 12px;
+}
+
+.item-icon .social-link {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    border: 1px solid #ffffff26;
+    border-radius: 10px;
+    color: var(--font-primary-color);
+    background-color: #ffffff08;
+
+    transition: all 0.3s ease;
+}
+
+.item-icon .social-link:hover {
+    color: var(--secondary-color);
+    border-color: var(--secondary-color);
+    box-shadow: 0 0 14px var(--shadow-color);
+    transform: translateY(-3px);
+}
+
+/* ---------- colunas de links ---------- */
+
+.navigation {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.column-title {
+    position: relative;
+    width: fit-content;
+    padding-bottom: 8px;
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--font-primary-color);
+}
+
+.column-title::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 24px;
+    height: 2px;
+    border-radius: 2px;
+    background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+}
+
+.link-list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+/* preenche de cima para baixo: 5 itens na 1ª coluna, 4 na 2ª */
+.link-list-two-columns {
+    display: grid;
+    grid-template-rows: repeat(5, auto);
+    grid-auto-flow: column;
+    grid-auto-columns: max-content;
+    column-gap: 40px;
+    row-gap: 12px;
+}
+
+.link-list-two-columns a {
+    white-space: nowrap;
+}
+
+.navigation a {
+    display: inline-block;
+    font-size: 14px;
+    color: #ffffffae;
+    text-decoration: none;
+
+    transition: color 0.3s ease, transform 0.3s ease;
+}
+
+.navigation a:hover {
+    color: var(--secondary-color);
+    transform: translateX(4px);
+}
+
+.contact-item {
+    display: inline-flex !important;
+    align-items: center;
+    gap: 10px;
+    word-break: break-all;
+}
+
+/* ---------- barra inferior ---------- */
+
+.footer-bottom {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    max-width: 1300px;
+    margin: 0 auto;
+    padding: 24px 0;
+    border-top: 1px solid #ffffff14;
+    font-size: 13px;
+    color: #ffffff80;
+}
+
+.back-to-top {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    color: #ffffff80;
+    text-decoration: none;
+
+    transition: color 0.3s ease;
+}
+
+.back-to-top:hover {
+    color: var(--secondary-color);
+}
+
+/* ---------- responsivo ---------- */
+
+@media (max-width: 1100px) {
+    .footer-component {
+        padding: 60px 48px 0;
+    }
+
+    .footer-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 48px;
+    }
+}
+
+@media (max-width: 640px) {
+    .footer-component {
+        padding: 48px 20px 0;
+    }
+
+    .footer-grid {
+        grid-template-columns: 1fr;
+        gap: 40px;
+    }
+
+    .link-list-two-columns {
+        display: flex;
+    }
+
+    .link-list-two-columns a {
+        white-space: normal;
+    }
+
+    .footer-bottom {
+        flex-direction: column;
+        text-align: center;
+    }
 }
