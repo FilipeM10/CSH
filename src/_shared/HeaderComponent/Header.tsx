@@ -16,7 +16,7 @@ const Header = () => {
     return (
         <header className={style["header"]}>
             <div className={style["logo-container"]}>
-                <img src="/logoCSH-sm.png" alt="CSH Logo" width={330} height={220} className={style["logo"]} />
+                <img src="/FM.DEV_logo.svg" alt="FM.DEV Logo" width={1295} height={470} className={style["logo"]} />
             </div>
             <nav id="menu-principal" className={`${style["nav-links"]}${menuAberto ? ` ${style["open"]}` : ''}`}>
                 <ul>

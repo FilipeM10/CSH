@@ -30,8 +30,8 @@ const Footer = () => {
             <div className={style["footer-grid"]}>
                 <div className={style["brand"]}>
                     <div className={style["logo-estruture"]}>
-                        <img src="/logoCSH-sm.png" alt="logo footer CSH" width={330} height={220} loading="lazy" className={style["logo"]} />
-                        <span className={`gradient-element ${style["csh-footer-name"]}`}>Cyber System Hub Studio</span>
+                        <img src="/FM.DEV_logo.svg" alt="logo footer FM.DEV" width={1295} height={470} loading="lazy" className={style["logo"]} />
+                        <span className={`gradient-element ${style["csh-footer-name"]}`}>Filipe Monteiro S.DEV</span>
                     </div>
                     <p className={style["brand-description"]}>
                         Soluções web sob medida: sites, sistemas e integrações para tirar sua ideia do papel.
@@ -94,7 +94,7 @@ const Footer = () => {
             </div>
 
             <div className={style["footer-bottom"]}>
-                <span>© {anoAtual} Cyber System Hub Studio. Todos os direitos reservados.</span>
+                <span>© {anoAtual} Filipe Monteiro Anjos Santos Todos os direitos reservados.</span>
                 <a href="#home" className={style["back-to-top"]}>
                     Voltar ao topo
                     <FaFIIcons typeModule="fi" name="FiArrowUp" size={14} />

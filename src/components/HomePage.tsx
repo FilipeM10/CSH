@@ -67,7 +67,7 @@ const HomePage = ({ id }: HomePageProps) => {
                     &gt; bem vindo ao seu ambiente ideal de desenvolvimento<span className="cursor-blink">_</span>
                 </span>
                 <span className={style['title']}><span className="gradient-element">Desenvolvendo</span> o futuro<br />Fazendo seu negócio rodar</span>
-                <p className={style['csh-description']}>Cyber System Hub Studio — desenvolvimento de software, APIs e <br className={style['desktop-break']} /> infraestrutura sob medida.</p>
+                <p className={style['csh-description']}>Filipe Monteiro — desenvolvedor de software, APIs e <br className={style['desktop-break']} /> infraestrutura sob medida.</p>
 
                 <div className={style['homeBtn']}>
                     <button className={`${style['btn']} ${style['see-project']}`}>Ver projetos</button>

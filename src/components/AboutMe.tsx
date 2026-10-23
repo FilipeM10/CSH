@@ -13,8 +13,8 @@ const AboutMe = ({ id }: AboutMeProps) => {
                 <span className='subtitle'>Ofertas claras e seguras, meu código suas regras</span>
                 <span className={style['description-aboutMe']}>
                     Sou Filipe Monteiro,
-                    desenvolvedor de sistemas apaixonado por transformar problemas complexos em software simples e eficiente.
-                    Na CSH, acompanho cada projeto da ideia ao deploy.
+                    desenvolvedor de sistemas apaixonado por transformar problemas complexos em software simples e eficiente
+                    acompanhando cada projeto da ideia ao deploy.
                 </span>
             </div>
             <div className={style['code-aboutMe']}>
@@ -27,7 +27,7 @@ const AboutMe = ({ id }: AboutMeProps) => {
                     <pre><code>
                         <span className={style["function"]}>const</span> <span className={style["variables"]}>dev</span> = {'{'}{'\n'}
                         {'  '}<span className={style["variables"]}>name</span>: <span className={style["string"]}>"Filipe Monteiro"</span>,{'\n'}
-                        {'  '}<span className={style["variables"]}>empresa</span>: <span className={style["string"]}>"Cyber System Hub Studio"</span>,{'\n'}
+                        {'  '}<span className={style["variables"]}>empresa</span>: <span className={style["string"]}>"FM.DEV"</span>,{'\n'}
                         {'  '}<span className={style["variables"]}>stack</span>: [{'\n'}
                         {'    '}<span className={style["string"]}>"TypeScript"</span>, <span className={style["string"]}>"React"</span>, <span className={style["string"]}>"Node.js"</span>,{'\n'}
                         {'    '}<span className={style["string"]}>"Python"</span>, <span className={style["string"]}>"Cloud"</span>, <span className={style["string"]}>"Linux"</span>, <span className={style["string"]}>"SQL"</span>{'\n'}
