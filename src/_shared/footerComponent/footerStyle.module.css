@@ -3,7 +3,6 @@
     padding: 80px 120px 0;
 }
 
-/* linha em gradiente no topo do footer */
 .footer-component::before {
     content: "";
     position: absolute;
@@ -24,7 +23,6 @@
     padding-bottom: 60px;
 }
 
-/* ---------- marca ---------- */
 
 .brand {
     display: flex;
@@ -83,7 +81,6 @@
     transform: translateY(-3px);
 }
 
-/* ---------- colunas de links ---------- */
 
 .navigation {
     display: flex;
@@ -120,7 +117,6 @@
     list-style: none;
 }
 
-/* preenche de cima para baixo: 5 itens na 1ª coluna, 4 na 2ª */
 .link-list-two-columns {
     display: grid;
     grid-template-rows: repeat(5, auto);
@@ -155,7 +151,6 @@
     word-break: break-all;
 }
 
-/* ---------- barra inferior ---------- */
 
 .footer-bottom {
     display: flex;
@@ -184,7 +179,6 @@
     color: var(--secondary-color);
 }
 
-/* ---------- responsivo ---------- */
 
 @media (max-width: 1100px) {
     .footer-component {

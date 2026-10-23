@@ -24,9 +24,56 @@ body {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    gap: 120px;
 }
 .section { padding: 120px; }
+
+.mainScope {
+    overflow-x: clip;
+}
+
+
+.reveal {
+    opacity: 0;
+}
+
+.reveal-up {
+    translate: 0 40px;
+}
+
+.reveal-left {
+    translate: -60px 0;
+}
+
+.reveal-right {
+    translate: 60px 0;
+}
+
+.reveal-zoom {
+    scale: 0.85;
+}
+
+.reveal.is-visible {
+    animation: reveal-in 0.8s cubic-bezier(0.2, 0.7, 0.2, 1) forwards;
+    animation-delay: var(--reveal-delay, 0ms);
+}
+
+@keyframes reveal-in {
+    to {
+        opacity: 1;
+        translate: 0 0;
+        scale: 1;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .reveal,
+    .reveal.is-visible {
+        opacity: 1;
+        translate: none;
+        scale: none;
+        animation: none;
+    }
+}
 
 .container-second-body {
     background-color: var(--background-secondary-color);
@@ -51,7 +98,6 @@ body {
     color: transparent;
 }
 
-/* usado na HomePage e no terminal do HeroCode */
 .cursor-blink {
     display: inline-block;
     animation: piscar 1s infinite;

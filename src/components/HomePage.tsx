@@ -6,7 +6,6 @@ interface HomePageProps {
     id: string;
 }
 
-// raio do brilho; precisa bater com o tamanho do .grid-glow no CSS (diâmetro = 2x)
 const GLOW_RADIUS = 180
 
 const HomePage = ({ id }: HomePageProps) => {
@@ -19,7 +18,6 @@ const HomePage = ({ id }: HomePageProps) => {
 
     useEffect(() => () => cancelAnimationFrame(frameRef.current), [])
 
-    // move o brilho só com transform (sem repintar); no máximo uma atualização por quadro
     const updateGlow = () => {
         frameRef.current = 0
         const container = containerRef.current
@@ -36,7 +34,6 @@ const HomePage = ({ id }: HomePageProps) => {
         const x = pointerRef.current.x - rect.left - GLOW_RADIUS
         const y = pointerRef.current.y - rect.top - GLOW_RADIUS
 
-        // as linhas internas recuam o resto da divisão pela grade para ficarem alinhadas com a grade do fundo
         const offsetX = ((x % grid) + grid) % grid
         const offsetY = ((y % grid) + grid) % grid
 
@@ -66,12 +63,11 @@ const HomePage = ({ id }: HomePageProps) => {
                 <div className={style['grid-glow-lines']} ref={linesRef} />
             </div>
             <div className={style['hero-content']}>
-                {/* comment-dev, cursor-blink e gradient-element são globais (index.css), por isso vão como string */}
                 <span className="comment-dev">
                     &gt; bem vindo ao seu ambiente ideal de desenvolvimento<span className="cursor-blink">_</span>
                 </span>
-                <span className={style['title']}>Desenvolvendo o <span className="gradient-element">futuro</span> <br />Fazendo seu negócio rodar</span>
-                <p className={style['csh-description']}>Cyber System Host — desenvolvimento de software, APIs e <br /> infraestrutura sob medida.</p>
+                <span className={style['title']}><span className="gradient-element">Desenvolvendo</span> o futuro<br />Fazendo seu negócio rodar</span>
+                <p className={style['csh-description']}>Cyber System Hub Studio — desenvolvimento de software, APIs e <br /> infraestrutura sob medida.</p>
 
                 <div className={style['homeBtn']}>
                     <button className={`${style['btn']} ${style['see-project']}`}>Ver projetos</button>

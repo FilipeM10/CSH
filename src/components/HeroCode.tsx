@@ -27,22 +27,18 @@ const TERMINAL = [
 
 const lineLength = (line: Token[]) => line.reduce((sum, tok) => sum + tok.v.length, 0)
 
-// cada quebra de linha conta como 1 caractere para dar uma pausa natural entre as linhas
 const TOTAL_CHARS = CODE.reduce((sum, line) => sum + lineLength(line) + 1, 0)
 
-// posição (em caracteres digitados) onde cada linha começa
 const LINE_STARTS = CODE.map((_, i) => CODE.slice(0, i).reduce((sum, line) => sum + lineLength(line) + 1, 0))
 
 const prefersReducedMotion = () =>
     typeof window !== 'undefined' && window.matchMedia('(prefers-reduced-motion: reduce)').matches
 
 const HeroCode = () => {
-    // com movimento reduzido já começa tudo escrito, sem precisar de setState no effect
     const [chars, setChars] = useState(() => (prefersReducedMotion() ? TOTAL_CHARS : 0))
     const [termLines, setTermLines] = useState(() => (prefersReducedMotion() ? TERMINAL.length : 0))
     const tiltRef = useRef<HTMLDivElement>(null)
 
-    // inclina a janela na direção do mouse; atualiza variáveis CSS direto no elemento para não re-renderizar
     const handleMouseMove = (e: MouseEvent<HTMLDivElement>) => {
         const el = tiltRef.current
         if (!el || prefersReducedMotion()) return
@@ -62,7 +58,6 @@ const HeroCode = () => {
         el.style.setProperty('--tilt-y', '0deg')
     }
 
-    // máquina de etapas: digita o código, depois imprime o terminal, espera e reinicia
     useEffect(() => {
         if (prefersReducedMotion()) return
 
@@ -80,7 +75,6 @@ const HeroCode = () => {
         return () => clearTimeout(timer)
     }, [chars, termLines])
 
-    // o cursor fica na primeira linha que ainda não terminou de ser digitada
     const cursorLine = LINE_STARTS.findIndex((start, i) => chars - start <= lineLength(CODE[i]))
 
     const renderedLines = CODE.map((line, i) => {

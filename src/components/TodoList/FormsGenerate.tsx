@@ -15,7 +15,7 @@ const FormsGenerate = ({ typeForm, inputEdit = "", postEvent, editEvent }: IForm
     function eventForm() {
         if (typeForm === 'post') postEvent?.(valueInput);
         else if (typeForm === 'edit') editEvent?.(valueInput);
-    } // o ?. é algo que diz: "a função só executa se não for undefined"
+    }
 
     return (
         <>

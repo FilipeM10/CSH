@@ -1,4 +1,5 @@
 import style from '../style/services.module.css'
+import Reveal from '../_shared/Reveal.tsx'
 
 interface ServicesProps {
     id: string;
@@ -50,7 +51,7 @@ const Services = ({ id }: ServicesProps) => {
             <div className={style["services-content"]}>
                 {
                     services.map((service, index) => (
-                        <div key={index} className={style["service-item"]}>
+                        <Reveal key={index} variant="left" delay={(index % 4) * 120} className={style["service-item"]}>
                             <div
                                 className={`${style["service-bg"]}${service.img ? '' : ` ${style["service-bg-empty"]}`}`}
                                 style={service.img ? { backgroundImage: `url(${service.img})` } : undefined}
@@ -59,7 +60,7 @@ const Services = ({ id }: ServicesProps) => {
                                 <h3 className={style["service-title"]}>{service.nome}</h3>
                                 <p className={style["service-description"]}>{service.descricao}</p>
                             </div>
-                        </div>
+                        </Reveal>
                     ))
                 }
             </div>

@@ -10,6 +10,7 @@
     z-index: 2;
     align-items: center;
     border-bottom: 1px solid #21354673;
+    padding: 10px;
 }
 
 .logo-container {
@@ -25,8 +26,8 @@
 }
 
 .logo {
-    width: 125px;
-    height: 60px;
+    width: 165px;
+    height:100px;
 }
 
 

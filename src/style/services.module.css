@@ -1,7 +1,6 @@
 .services-container {
     display: flex;
     flex-direction: column;
-    margin-bottom: 10px;
 }
 
 .services-content {
@@ -31,7 +30,6 @@
     box-shadow: 1px 1px 20px 1px var(--string-body);
 }
 
-/* imagem ocupando o card inteiro, atrás do texto */
 .service-bg {
     position: absolute;
     inset: 0;
@@ -41,14 +39,12 @@
     transition: transform 0.6s ease;
 }
 
-/* enquanto não tem imagem: um degradê com as cores do tema */
 .service-bg-empty {
     background-image:
         radial-gradient(circle at 25% 20%, rgba(6, 159, 249, 0.22), transparent 55%),
         radial-gradient(circle at 80% 75%, rgba(0, 232, 152, 0.14), transparent 50%);
 }
 
-/* escurece a parte de baixo para o texto ficar legível em cima de qualquer imagem */
 .service-item::after {
     content: '';
     position: absolute;

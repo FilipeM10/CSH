@@ -1,0 +1,218 @@
+.process {
+    position: relative;
+    overflow: hidden;
+    isolation: isolate;
+}
+
+.process-header {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 56px;
+}
+
+.process-description {
+    margin: 0;
+    max-width: 560px;
+    font-size: 15px;
+    line-height: 1.6;
+    color: #8da2af;
+}
+
+
+.timeline {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 24px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.step {
+    --step-time: 400ms;
+    --step-delay: calc(var(--i, 0) * var(--step-time));
+    --marker-size: 64px;
+    --gap: 24px;
+
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    text-align: center;
+}
+
+.step:not(:last-child)::before,
+.step:not(:last-child)::after {
+    content: '';
+    position: absolute;
+    top: calc(var(--marker-size) / 2 - 1px);
+    left: calc(50% + var(--marker-size) / 2);
+    width: calc(100% + var(--gap) - var(--marker-size));
+    height: 2px;
+    border-radius: 2px;
+}
+
+.step:not(:last-child)::before {
+    background-color: #ffffff14;
+}
+
+.step:not(:last-child)::after {
+    background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform var(--step-time) linear;
+    transition-delay: var(--step-delay);
+}
+
+.visible .step:not(:last-child)::after {
+    transform: scaleX(1);
+}
+
+.step-marker {
+    position: relative;
+    z-index: 1;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: var(--marker-size);
+    height: var(--marker-size);
+    border: 1px solid #21354699;
+    border-radius: 50%;
+    color: #ffffff59;
+    background-color: #030C17;
+    box-sizing: border-box;
+
+    transition: border-color 0.4s ease, color 0.4s ease, box-shadow 0.4s ease, transform 0.3s ease;
+    transition-delay: var(--step-delay), var(--step-delay), var(--step-delay), 0s;
+}
+
+.visible .step-marker {
+    border-color: var(--secondary-color);
+    color: var(--secondary-color);
+    box-shadow: 0 0 18px var(--shadow-color);
+}
+
+.step-icon {
+    display: flex;
+    transition: transform 0.3s ease;
+}
+
+.step-number {
+    position: absolute;
+    top: -6px;
+    right: -8px;
+    padding: 2px 7px;
+    border-radius: 999px;
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--background-primary-color);
+    background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
+}
+
+.step:hover .step-marker {
+    transform: translateY(-4px);
+}
+
+.step:hover .step-icon {
+    transform: rotate(-8deg) scale(1.1);
+}
+
+.step-text {
+    opacity: 0;
+    translate: 0 16px;
+}
+
+.visible .step-text {
+    animation: reveal-up 0.6s ease forwards;
+    animation-delay: var(--step-delay);
+}
+
+.step-title {
+    margin: 0 0 8px;
+    font-size: 17px;
+}
+
+.step-description {
+    margin: 0 auto;
+    max-width: 230px;
+    font-size: 13px;
+    line-height: 1.6;
+    color: #8da2af;
+}
+
+
+@keyframes reveal-up {
+    to {
+        opacity: 1;
+        translate: 0 0;
+    }
+}
+
+
+@media (max-width: 1100px) {
+    .timeline {
+        grid-template-columns: 1fr;
+        gap: 0;
+    }
+
+    .step {
+        --marker-size: 56px;
+
+        flex-direction: row;
+        align-items: flex-start;
+        text-align: left;
+        padding-bottom: 36px;
+    }
+
+    .step:last-child {
+        padding-bottom: 0;
+    }
+
+    .step:not(:last-child)::before,
+    .step:not(:last-child)::after {
+        top: var(--marker-size);
+        left: calc(var(--marker-size) / 2 - 1px);
+        width: 2px;
+        height: calc(100% - var(--marker-size));
+    }
+
+    .step:not(:last-child)::after {
+        transform: scaleY(0);
+        transform-origin: top;
+    }
+
+    .visible .step:not(:last-child)::after {
+        transform: scaleY(1);
+    }
+
+    .step-text {
+        padding-top: 6px;
+    }
+
+    .step-description {
+        margin: 0;
+        max-width: 480px;
+    }
+}
+
+@media (max-width: 600px) {
+    .process:global(.section) {
+        padding: 80px 20px;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .step-marker,
+    .step:not(:last-child)::after {
+        transition: none;
+    }
+
+    .step-text,
+    .visible .step-text {
+        opacity: 1;
+        translate: none;
+        animation: none;
+    }
+}

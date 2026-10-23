@@ -1,75 +1,73 @@
-# React + TypeScript + Vite
+# Cyber System Hub Studio (CSH)
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Landing page da **Cyber System Hub Studio**, estúdio de desenvolvimento de software de Filipe Monteiro. A página apresenta os serviços oferecidos (sites, sistemas web, APIs, integrações, análise de dados e infraestrutura), explica como funciona o processo de trabalho e reúne os canais de contato, com uma identidade visual inspirada em editores de código e terminais.
 
-Currently, two official plugins are available:
+## Seções da página
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+A página é de rolagem única, e o menu do header navega por âncoras entre as seções:
 
-## React Compiler
+| Seção        | Componente              | O que tem                                                                                                                                                                        |
+| ------------ | ----------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Início**   | `HomePage` + `HeroCode` | Hero com grade de fundo e um brilho que acompanha o mouse, aurora animada e uma janela de código em 3D que inclina com o cursor, "digita" o código e imprime a saída no terminal |
+| **Sobre**    | `AboutMe`               | Apresentação do desenvolvedor e um bloco de código estilizado com a stack                                                                                                        |
+| **Serviços** | `Services`              | Grade com 8 cards de serviços, com imagem de fundo e entrada escalonada                                                                                                          |
+| **Processo** | `Process`               | Linha do tempo com 5 etapas (conversa inicial → entrega e suporte) que acende em sequência ao aparecer na tela                                                                   |
+| **Contatos** | `Contacts`              | Cards de WhatsApp, e-mail (com botão de copiar), LinkedIn e GitHub, e um painel de disponibilidade e horários                                                                    |
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+O `Header` (logo + navegação) e o `Footer` aparecem em toda a página.
 
-## Expanding the ESLint configuration
+## Destaques técnicos
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+- **Animações leves**: o brilho do hero e a inclinação da janela de código atualizam o `transform` e variáveis CSS direto no elemento, com `requestAnimationFrame`, sem causar re-render no React.
+- **Entrada no scroll**: o componente `Reveal` e o hook `useRevealOnScroll` usam `IntersectionObserver` para animar cada seção uma única vez quando ela entra na tela (variantes `zoom`, `left` e `right`).
+- **Acessibilidade**: respeita `prefers-reduced-motion`. Com movimento reduzido, o código do hero já aparece escrito, sem animação.
+- **CSS Modules**: cada componente tem o próprio arquivo de estilo, e os estilos globais (cores, tipografia, classes utilitárias) ficam em `src/index.css`.
+- **Dados de contato centralizados** em `src/_shared/contactInfo.ts`, usados pelo Footer e pela seção de Contatos.
+- **Responsivo**: o layout se adapta a telas menores (o hero empilha e a linha do tempo fica vertical).
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+## Tecnologias
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+- [React 19](https://react.dev/) + [TypeScript](https://www.typescriptlang.org/)
+- [Vite](https://vite.dev/)
+- CSS Modules
+- [react-icons](https://react-icons.github.io/react-icons/) e [lucide-react](https://lucide.dev/)
+- ESLint
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+## Estrutura de pastas
 
 ```
-
-You can also install [eslint-plugin-react-x](https://npmx.dev/package/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://npmx.dev/package/eslint-plugin-react-dom) for React-specific lint rules:
-
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-
+public/                    logos e favicon
+src/
+├── main.tsx               ponto de entrada
+├── App.tsx                monta o Header, as seções e o Footer
+├── index.css              estilos globais e animações de reveal
+├── assets/                imagens dos cards de serviço
+├── components/            seções da página (HomePage, HeroCode, AboutMe, Services, Process, Contacts)
+├── style/                 CSS Modules das seções
+└── _shared/
+    ├── HeaderComponent/   cabeçalho e navegação
+    ├── footerComponent/   rodapé
+    ├── hooks/             useRevealOnScroll
+    ├── icons/             wrappers de ícones (react-icons / lucide)
+    ├── Reveal.tsx         wrapper de animação de entrada
+    └── contactInfo.ts     e-mail, WhatsApp, GitHub e LinkedIn
 ```
+
+## Como rodar
+
+Pré-requisito: [Node.js](https://nodejs.org/) instalado.
+
+```bash
+npm install       # instala as dependências
+npm run dev       # servidor de desenvolvimento (http://localhost:5173)
+npm run build     # checagem de tipos + build de produção em dist/
+npm run preview   # serve o build localmente
+npm run lint      # roda o ESLint
+```
+
+## Contato
+
+Desenvolvido por **Filipe Monteiro**, Cyber System Hub Studio.
+
+- GitHub: [@FilipeM10](https://github.com/FilipeM10)
+- LinkedIn: [Filipe Monteiro](https://www.linkedin.com/in/filipe-monteiro-6670312b4/)

@@ -15,8 +15,6 @@
     box-sizing: border-box;
 }
 
-/* fundo quadriculado; as duas primeiras camadas (por cima) envolvem a grade
-   com a cor de fundo da página, fazendo ela sumir nas bordas */
 .container::before {
     content: '';
     position: absolute;
@@ -35,8 +33,6 @@
         var(--grid-size) var(--grid-size);
 }
 
-/* brilho nas linhas da grade que segue o mouse: um círculo pequeno com máscara fixa,
-   movido só por transform (o JS também desloca as linhas internas para ficarem alinhadas com a grade) */
 .grid-glow {
     position: absolute;
     top: 0;
@@ -67,7 +63,6 @@
     will-change: transform;
 }
 
-/* aurora azul/verde em movimento no topo */
 .container::after {
     content: '';
     position: absolute;
@@ -91,7 +86,6 @@
     gap: 10px;
 }
 
-/* em telas menores a animação desce para baixo do texto */
 @media (max-width: 1200px) {
     .container {
         flex-direction: column;
@@ -102,7 +96,7 @@
 }
 
 .title {
-    font-size: 3rem;
+    font-size: 2.4rem;
     font-weight: 900;
 }
 
@@ -150,7 +144,6 @@
     border: 1px solid var(--secondary-color);
 }
 
-/* precisa ficar no mesmo arquivo: o CSS Module renomeia o nome da animação usado aqui */
 @keyframes aurora-drift {
     0% {
         transform: translateX(-50%) translate(0, 0) rotate(0deg) scale(1);

@@ -4,7 +4,6 @@
     inherits: false;
 }
 
-/* registrada para poder ser animada com transition; o terminal e os chips somam ela no translateZ */
 @property --depth {
     syntax: '<length>';
     initial-value: 0px;
@@ -18,7 +17,6 @@
     perspective: 1200px;
 }
 
-/* camada do hover: segue o mouse (--tilt-x/--tilt-y vêm do JS) e separa as peças em profundidade */
 .hero-tilt {
     position: relative;
     transform-style: preserve-3d;
@@ -36,12 +34,10 @@
         --depth 0.5s cubic-bezier(0.2, 0.8, 0.2, 1);
 }
 
-/* congela a flutuação enquanto o mouse "segura" a janela */
 .hero-visual:hover .hero-stage {
     animation-play-state: paused;
 }
 
-/* palco 3D: inclina e flutua tudo junto; terminal e chips ficam mais à frente (translateZ) */
 .hero-stage {
     position: relative;
     transform-style: preserve-3d;
@@ -71,7 +67,6 @@
         0 0 100px -10px rgba(6, 159, 249, 0.45);
 }
 
-/* reflexo de luz que acompanha o cursor */
 .code-window::after {
     content: '';
     position: absolute;
@@ -91,7 +86,6 @@
     filter: brightness(1.6) drop-shadow(0 0 6px var(--primary-color));
 }
 
-/* borda com brilho azul/verde girando em volta da janela */
 .code-window::before {
     content: '';
     position: absolute;
@@ -279,7 +273,6 @@
     }
 }
 
-/* cópia local do piscar do index.css: dentro do módulo o nome da animação ganha hash e não enxerga o global */
 @keyframes piscar {
     0%, 100% {
         opacity: 1;
@@ -318,7 +311,6 @@
     }
 }
 
-/* em telas menores a animação desce para baixo do texto da HomePage */
 @media (max-width: 1200px) {
     .hero-visual {
         width: 100%;
