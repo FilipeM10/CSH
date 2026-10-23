@@ -1,10 +1,18 @@
-import * as FaIcons from 'react-icons/fa'
-import * as FiIcons from 'react-icons/fi'
+import { FaLinkedinIn, FaWhatsapp } from 'react-icons/fa'
+import {
+    FiArrowUp, FiArrowUpRight, FiCalendar, FiCheck, FiChevronLeft, FiChevronRight, FiClock, FiCode, FiCopy, FiFileText,
+    FiGithub, FiMail, FiMapPin, FiMenu, FiMessageCircle, FiSend, FiSliders, FiX,
+} from 'react-icons/fi'
 import type { IconType } from 'react-icons'
 
+// Importar só os ícones usados evita empacotar as bibliotecas inteiras (~1,4 MB).
+// Para usar um ícone novo, importe-o acima e adicione-o aqui.
 const modules = {
-    fa: FaIcons,
-    fi: FiIcons,
+    fa: { FaLinkedinIn, FaWhatsapp },
+    fi: {
+        FiArrowUp, FiArrowUpRight, FiCalendar, FiCheck, FiChevronLeft, FiChevronRight, FiClock, FiCode, FiCopy, FiFileText,
+        FiGithub, FiMail, FiMapPin, FiMenu, FiMessageCircle, FiSend, FiSliders, FiX,
+    },
 }
 
 type IconsProps = {
@@ -12,8 +20,8 @@ type IconsProps = {
     size?: number;
     className?: string;
 } & (
-    | { typeModule: 'fa'; name: keyof typeof FaIcons }
-    | { typeModule: 'fi'; name: keyof typeof FiIcons }
+    | { typeModule: 'fa'; name: keyof typeof modules.fa }
+    | { typeModule: 'fi'; name: keyof typeof modules.fi }
 )
 
 const FaFiIcons = ({ typeModule, name, color, size, className }: IconsProps) => {

@@ -73,15 +73,145 @@
     color: #8da2af;
 }
 
+.carousel-arrow,
+.carousel-dots {
+    display: none;
+}
+
+/* Mobile/tablet: carrossel com scroll-snap. O card ativo ganha zoom e os vizinhos ficam como janelas de fundo.
+   Usa transform/filter (e não scale/opacity) porque a animação do Reveal fixa scale e opacity em 1 */
 @media (max-width: 1100px) {
+    .carousel {
+        --card-w: min(74vw, 420px);
+
+        position: relative;
+        margin-inline: -48px;
+    }
+
     .services-content {
-        grid-template-columns: repeat(2, 1fr);
+        display: flex;
+        gap: 16px;
+        overflow-x: auto;
+        scroll-snap-type: x mandatory;
+        padding: 16px calc((100% - var(--card-w)) / 2);
+        position: relative;
+        scrollbar-width: none;
+    }
+
+    .services-content::-webkit-scrollbar {
+        display: none;
+    }
+
+    .service-item {
+        flex: 0 0 var(--card-w);
+        min-height: 300px;
+        scroll-snap-align: center;
+        transform: scale(0.88);
+        filter: brightness(0.45) saturate(0.7);
+        transition: transform 0.4s ease, filter 0.4s ease, box-shadow 0.4s ease, border-color 0.4s ease;
+    }
+
+    .service-item:hover {
+        transform: scale(0.88);
+        box-shadow: none;
+    }
+
+    .service-item:hover .service-bg {
+        transform: none;
+    }
+
+    .service-item.active {
+        transform: scale(1.03);
+        filter: none;
+        border-color: #00e89766;
+        box-shadow: 0 10px 30px -8px var(--shadow-color);
+    }
+
+    .carousel-arrow {
+        position: absolute;
+        top: 50%;
+        z-index: 2;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 40px;
+        height: 40px;
+        padding: 0;
+        border: 1px solid #ffffff26;
+        border-radius: 50%;
+        color: #fff;
+        background-color: rgba(3, 12, 23, 0.55);
+        -webkit-backdrop-filter: blur(8px);
+        backdrop-filter: blur(8px);
+        cursor: pointer;
+        translate: 0 -50%;
+        transition: opacity 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+    }
+
+    .carousel-arrow:disabled {
+        opacity: 0.3;
+        pointer-events: none;
+    }
+
+    .arrow-prev {
+        left: 12px;
+    }
+
+    .arrow-next {
+        right: 12px;
+    }
+
+    .carousel-dots {
+        display: flex;
+        justify-content: center;
+        gap: 8px;
+        margin-top: 12px;
+    }
+
+    .dot {
+        width: 8px;
+        height: 8px;
+        padding: 0;
+        border: 0;
+        border-radius: 999px;
+        background-color: #ffffff33;
+        cursor: pointer;
+        transition: width 0.3s ease, background-color 0.3s ease;
+    }
+
+    .dot-active {
+        width: 24px;
+        background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
     }
 }
 
 @media (max-width: 600px) {
+    .carousel {
+        --card-w: 64vw;
+
+        margin-inline: -20px;
+    }
+
     .services-content {
-        grid-template-columns: 1fr;
-        gap: 16px;
+        gap: 6px;
+    }
+
+    .service-item {
+        min-height: 280px;
+    }
+
+    .arrow-prev {
+        left: 6px;
+    }
+
+    .arrow-next {
+        right: 6px;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .service-item,
+    .dot {
+        transition: none;
     }
 }

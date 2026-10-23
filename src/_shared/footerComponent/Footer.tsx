@@ -30,7 +30,7 @@ const Footer = () => {
             <div className={style["footer-grid"]}>
                 <div className={style["brand"]}>
                     <div className={style["logo-estruture"]}>
-                        <img src="/logoCSH.png" alt="logo footer CSH" className={style["logo"]} />
+                        <img src="/logoCSH-sm.png" alt="logo footer CSH" width={330} height={220} loading="lazy" className={style["logo"]} />
                         <span className={`gradient-element ${style["csh-footer-name"]}`}>Cyber System Hub Studio</span>
                     </div>
                     <p className={style["brand-description"]}>

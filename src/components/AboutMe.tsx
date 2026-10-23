@@ -19,9 +19,9 @@ const AboutMe = ({ id }: AboutMeProps) => {
             </div>
             <div className={style['code-aboutMe']}>
                 <div className={style["header-code"]}>
-                    <span className={style["dot red"]} />
-                    <span className={style["dot yellow"]} />
-                    <span className={style["dot green"]} />
+                    <span className={`${style["dot"]} ${style["red"]}`} />
+                    <span className={`${style["dot"]} ${style["yellow"]}`} />
+                    <span className={`${style["dot"]} ${style["green"]}`} />
                 </div>
                 <div className={style["body-code"]}>
                     <pre><code>

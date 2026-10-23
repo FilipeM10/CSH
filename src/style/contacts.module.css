@@ -321,13 +321,22 @@
     .contacts-grid {
         grid-template-columns: 1fr;
     }
+
+    /* o card inteiro já é o link; sem a seta sobra espaço para o e-mail caber numa linha */
+    .card-arrow {
+        display: none;
+    }
+
+    .card-link {
+        padding: 24px 16px;
+    }
+
+    .card-value {
+        font-size: 14px;
+    }
 }
 
 @media (max-width: 600px) {
-    .contacts:global(.section) {
-        padding: 80px 20px;
-    }
-
     .cards {
         grid-template-columns: 1fr;
         gap: 16px;

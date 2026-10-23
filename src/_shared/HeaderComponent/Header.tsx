@@ -1,21 +1,42 @@
+import { useState } from 'react'
 import style from './headerStyle.module.css'
+import FaFIIcons from '../icons/FaFiIcons.tsx'
+
+const links = [
+    { label: "Inicio", href: "#home" },
+    { label: "Sobre", href: "#about" },
+    { label: "Serviços", href: "#services" },
+    { label: "Processo", href: "#process" },
+    { label: "Contatos", href: "#contacts" },
+]
 
 const Header = () => {
+    const [menuAberto, setMenuAberto] = useState(false)
 
     return (
         <header className={style["header"]}>
             <div className={style["logo-container"]}>
-                <img src="/logoCSH.png" alt="CSH Logo" className={style["logo"]} />
+                <img src="/logoCSH-sm.png" alt="CSH Logo" width={330} height={220} className={style["logo"]} />
             </div>
-            <nav className={style["nav-links"]}>
+            <nav id="menu-principal" className={`${style["nav-links"]}${menuAberto ? ` ${style["open"]}` : ''}`}>
                 <ul>
-                    <a href="#home">Inicio</a>
-                    <a href="#about">Sobre</a>
-                    <a href="#services">Serviços</a>
-                    <a href="#process">Processo</a>
-                    <a href="#contacts">Contatos</a>
+                    {links.map(({ label, href }) => (
+                        <li key={href}>
+                            <a href={href} onClick={() => setMenuAberto(false)}>{label}</a>
+                        </li>
+                    ))}
                 </ul>
             </nav>
+            <button
+                type="button"
+                className={style["menu-button"]}
+                onClick={() => setMenuAberto(aberto => !aberto)}
+                aria-expanded={menuAberto}
+                aria-controls="menu-principal"
+                aria-label={menuAberto ? "Fechar menu" : "Abrir menu"}
+            >
+                <FaFIIcons typeModule="fi" name={menuAberto ? "FiX" : "FiMenu"} size={24} />
+            </button>
         </header>
     )
 }

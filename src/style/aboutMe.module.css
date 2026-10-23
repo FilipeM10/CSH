@@ -16,6 +16,7 @@
 
 .info-aboutMe {
     width: 100%;
+    box-sizing: border-box;
     display: flex;
     flex-direction: column;
     flex: 1;
@@ -79,6 +80,41 @@
 
 .dot.green {
     background-color: #4caf50;
+}
+
+@media (max-width: 1100px) {
+    .aboutMe-container {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 0;
+    }
+
+    .info-aboutMe {
+        padding-top: 40px;
+    }
+
+    .code-aboutMe {
+        width: auto;
+        margin: 0 48px 80px;
+    }
+}
+
+@media (max-width: 600px) {
+    .info-aboutMe {
+        padding-top: 24px;
+    }
+
+    .code-aboutMe {
+        margin: 0 20px 64px;
+    }
+
+    .body-code {
+        padding: 16px;
+    }
+
+    .body-code pre {
+        font-size: 12px;
+    }
 }
 
 .variables {
